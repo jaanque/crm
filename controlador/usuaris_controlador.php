@@ -76,5 +76,17 @@ class UsuarisControlador {
             require_once 'vista/usuaris/registre.php';
         }
     }
+
+    public function llistat() {
+        // Comprovar que sigui administrador
+        if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'administrador') {
+            die("Accés denegat.");
+        }
+
+        $modelo = new UsuarisModelo();
+        $data['usuaris'] = $modelo->obtenirTots();
+
+        require_once 'vista/usuaris/llistat.php';
+    }
 }
 ?>

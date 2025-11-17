@@ -48,5 +48,12 @@ class UsuarisModelo {
 
         return $exit;
     }
+
+    public function obtenirTots() {
+        $resultat = $this->connexio->query("SELECT id_usuari, nom_complet, email, rol FROM usuaris ORDER BY nom_complet ASC");
+        $dades = $resultat->fetch_all(MYSQLI_ASSOC);
+        $this->connexio->close();
+        return $dades;
+    }
 }
 ?>

@@ -34,5 +34,12 @@ class ClientsModelo {
         $this->connexio->close();
         return $dades;
     }
+
+    public function obtenirNomsClients() {
+        $resultat = $this->connexio->query("SELECT id_client, nom_complet FROM clients ORDER BY nom_complet ASC");
+        $dades = $resultat->fetch_all(MYSQLI_ASSOC);
+        // No tanquem la connexió per si s'utilitza després
+        return $dades;
+    }
 }
 ?>

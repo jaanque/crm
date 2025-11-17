@@ -15,6 +15,32 @@ class TasquesModelo {
         return $total;
     }
 
-    // Aquí aniran els altres mètodes del model de tasques
+    public function obtenirPendentsPerUsuari($id_usuari) {
+        $sql = "SELECT t.*, o.titol as titol_oportunitat
+                FROM tasques t
+                LEFT JOIN oportunitats o ON t.id_oportunitat = o.id_oportunitat
+                WHERE o.usuari_responsable = ? AND t.estat = 'pendent'
+                ORDER BY t.data ASC";
+
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("i", $id_usuari);
+        $stmt->execute();
+        $resultat = $stmt->get_result();
+        $dades = $resultat->fetch_all(MYSQLI_ASSOC);
+
+        return $dades;
+    }
+
+    public function marcarCompletada($id_tasca) {
+        $sql = "UPDATE tasques SET estat = 'completada' WHERE id_tasca = ?";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("i", $id_tasca);
+        $exit = $stmt->execute();
+
+        $stmt->close();
+        $this->connexio->close();
+
+        return $exit;
+    }
 }
 ?>

@@ -17,7 +17,9 @@ El projecte segueix l'estructura MVC sol·licitada:
 *   **Gestió d'usuaris:** Sistema d'inici de sessió i registre de nous usuaris.
 *   **Panell Principal:** Vista de resum per a l'administrador.
 *   **Gestió de Clients:** Llistat i cerca de clients.
-*   *(La base per a implementar la resta de mòduls - oportunitats, tasques, etc. - està completament definida).*
+*   **Gestió d'Oportunitats:** Llistat i filtratge.
+*   **Gestió de Tasques:** Llistat de tasques pendents i opció per a completar-les.
+*   **Gestió d'Usuaris:** Llistat d'usuaris per a l'administrador.
 
 ## Instruccions d'Instal·lació
 
