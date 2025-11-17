@@ -1,7 +1,10 @@
 <?php
 // vista/includes/footer.php
 ?>
-</div> <!-- /container -->
+<hr>
+<footer>
+    <p>&copy; <?php echo date('Y'); ?> CRM</p>
+</footer>
 
 </body>
 </html>

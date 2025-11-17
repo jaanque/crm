@@ -5,7 +5,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'crm_db');
+define('DB_NAME', 'crm_mvc_db');
 
 // Funció per a connectar a la BBDD
 function conectar() {

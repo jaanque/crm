@@ -10,15 +10,14 @@
 </head>
 <body>
 
-<div class="navbar">
-    <a href="index.php?c=panell&m=index">Inici</a>
-    <a href="index.php?c=clients&m=index">Clients</a>
-    <a href="index.php?c=oportunitats&m=index">Oportunitats</a>
-    <a href="index.php?c=tasques&m=index">Tasques</a>
+<nav>
+    <a href="index.php?c=panell&m=index">Inici</a> |
+    <a href="index.php?c=clients&m=index">Clients</a> |
+    <a href="index.php?c=oportunitats&m=index">Oportunitats</a> |
+    <a href="index.php?c=tasques&m=index">Tasques</a> |
     <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'administrador'): ?>
-        <a href="index.php?c=usuaris&m=llistat">Usuaris</a>
+        <a href="index.php?c=usuaris&m=llistat">Usuaris</a> |
     <?php endif; ?>
-    <a href="index.php?c=usuaris&m=logout" style="float: right;">Tancar Sessió</a>
-</div>
-
-<div class="container">
+    <a href="index.php?c=usuaris&m=logout">Tancar Sessió</a>
+</nav>
+<hr>

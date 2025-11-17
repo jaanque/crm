@@ -1,43 +1,10 @@
-/* Fitxer d'estils principal per al CRM - Versió Simple */
+/* Fitxer d'estils - Versió ultra simple */
 
 body {
     font-family: sans-serif;
-    color: #333;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #fdfdfd;
+    margin: 20px;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #eee;
-}
-
-/* --- Navegació --- */
-.navbar {
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 20px;
-    overflow: hidden;
-}
-
-.navbar a {
-    float: left;
-    text-decoration: none;
-    color: #555;
-    padding: 10px 15px;
-}
-
-.navbar a:hover {
-    color: #000;
-}
-
-/* --- Taules --- */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -45,67 +12,6 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f9f9f9;
-}
-
-/* --- Formularis --- */
-form {
-    margin-top: 20px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
-    padding: 8px;
-    margin-right: 10px;
     border: 1px solid #ccc;
-}
-
-button {
-    padding: 8px 15px;
-    border: none;
-    background-color: #555;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #333;
-}
-
-/* --- Pàgines de Login/Registre --- */
-.auth-container {
-    width: 350px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-}
-.auth-container h2 {
-    text-align: center;
-}
-.auth-container .form-group {
-    margin-bottom: 15px;
-}
-.auth-container label {
-    display: block;
-    margin-bottom: 5px;
-}
-.auth-container input {
-    width: 100%;
-    box-sizing: border-box; /* Perquè el padding no afecti l'amplada */
-}
-.auth-container button {
-    width: 100%;
-}
-.auth-container .auth-link {
-    text-align: center;
-    margin-top: 15px;
+    padding: 5px;
 }
