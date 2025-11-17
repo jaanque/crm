@@ -10,7 +10,9 @@ El projecte segueix l'estructura MVC sol·licitada:
 *   **`config.php`:** Conté la configuració de la base de dades i altres paràmetres de l'aplicació.
 *   **`controlador/`:** Aquesta carpeta conté les classes dels controladors (ex: `usuaris_controlador.php`). La seva funció és rebre les dades de l'usuari, interactuar amb el model i carregar la vista corresponent.
 *   **`modelo/`:** Aquesta carpeta conté les classes dels models (ex: `usuaris_modelo.php`). S'encarreguen de tota la interacció amb la base de dades (consultes, insercions, etc.).
-*   **`vista/`:** Aquesta carpeta conté els fitxers de la interfície d'usuari (HTML). Les vistes són "tontes", només mostren les dades que els passa el controlador.
+*   **`vista/`:** Aquesta carpeta conté els fitxers de la interfície d'usuari.
+    *   `css/estil.css`: Un únic fitxer CSS centralitzat amb un disseny simple.
+    *   `includes/`: Parts comunes de la interfície com la capçalera i el peu de pàgina.
 
 ## Funcionalitats Implementades
 

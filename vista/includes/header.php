@@ -6,16 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CRM - MVC</title>
-    <style>
-        body { font-family: sans-serif; margin: 0; }
-        .navbar { background: #333; overflow: hidden; }
-        .navbar a { float: left; display: block; color: white; text-align: center; padding: 14px 20px; text-decoration: none; }
-        .navbar a:hover { background-color: #ddd; color: black; }
-        .container { padding: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; }
-        th { background-color: #f2f2f2; }
-    </style>
+    <link rel="stylesheet" href="vista/css/estil.css">
 </head>
 <body>
 
