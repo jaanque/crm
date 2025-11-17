@@ -46,6 +46,35 @@ class UsuarisControlador {
         exit;
     }
 
-    // Aquí aniran els altres mètodes del controlador (llistat, etc.)
+    public function registre() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Processar el formulari de registre
+            $nom_complet = $_POST['nom_complet'];
+            $email = $_POST['email'];
+            $contrasenya = $_POST['password'];
+
+            $modelo = new UsuarisModelo();
+
+            // Comprovar si l'email ja existeix
+            if ($modelo->emailExisteix($email)) {
+                $data['error'] = "Aquest correu electrònic ja està registrat.";
+                require_once 'vista/usuaris/registre.php';
+            } else {
+                // Crear el nou usuari
+                $exit = $modelo->crearUsuari($nom_complet, $email, $contrasenya);
+                if ($exit) {
+                    // Redirigir al login amb un missatge d'èxit
+                    header('Location: index.php?c=usuaris&m=login&registre=exit');
+                    exit;
+                } else {
+                    $data['error'] = "Error en crear l'usuari. Si us plau, torna-ho a intentar.";
+                    require_once 'vista/usuaris/registre.php';
+                }
+            }
+        } else {
+            // Mostrar el formulari de registre
+            require_once 'vista/usuaris/registre.php';
+        }
+    }
 }
 ?>
