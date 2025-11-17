@@ -1,38 +1,35 @@
-# Prototip de CRM Funcional (Versió en Català)
+# Prototip de CRM amb Arquitectura MVC Clàssica
 
-Aquest és un prototip d'una aplicació de CRM (Customer Relationship Management) desenvolupada en PHP, seguint el patró d'arquitectura Model-Vista-Controlador (MVC).
+Aquest és un prototip funcional d'una aplicació CRM desenvolupada en PHP, seguint un patró d'arquitectura Model-Vista-Controlador (MVC) clàssic i fàcil d'entendre, ideal per a estudiants.
+
+## Arquitectura
+
+El projecte segueix l'estructura MVC sol·licitada:
+
+*   **`index.php` (Controlador Frontal):** És l'únic punt d'entrada a l'aplicació. S'encarrega de rebre totes les peticions i de carregar el controlador i el mètode adequats.
+*   **`config.php`:** Conté la configuració de la base de dades i altres paràmetres de l'aplicació.
+*   **`controlador/`:** Aquesta carpeta conté les classes dels controladors (ex: `usuaris_controlador.php`). La seva funció és rebre les dades de l'usuari, interactuar amb el model i carregar la vista corresponent.
+*   **`modelo/`:** Aquesta carpeta conté les classes dels models (ex: `usuaris_modelo.php`). S'encarreguen de tota la interacció amb la base de dades (consultes, insercions, etc.).
+*   **`vista/`:** Aquesta carpeta conté els fitxers de la interfície d'usuari (HTML). Les vistes són "tontes", només mostren les dades que els passa el controlador.
 
 ## Funcionalitats Implementades
 
-*   **Gestió d'usuaris i rols:** Registre, inici de sessió i tancament de sessió. CRUD d'usuaris per a administradors.
-*   **Mòdul de clients:** Llistat i cerca de clients.
-*   **Mòdul d'oportunitats:** Llistat i filtratge d'oportunitats per estat i client.
-*   **Mòdul de tasques:** Llistat de tasques i l'opció de marcar-les com a completades.
-*   **Panell d'administrador:** Una vista de resum amb les mètriques clau del sistema.
+*   **Gestió d'usuaris:** Sistema d'inici de sessió.
+*   **Panell Principal:** Vista de resum per a l'administrador.
+*   **Gestió de Clients:** Llistat i cerca de clients.
+*   *(La base per a implementar la resta de mòduls - oportunitats, tasques, etc. - està completament definida).*
 
 ## Instruccions d'Instal·lació
 
 1.  **Base de Dades:**
-    *   Assegura't de tenir un servidor de base de dades MySQL en funcionament (per exemple, XAMPP, WAMP, MAMP).
-    *   Importa el fitxer `database_catala.sql` al teu gestor de base de dades per crear les taules necessàries.
-    *   Configura les dades d'accés a la base de dades al fitxer `config/database.php`.
+    *   Assegura't de tenir un servidor de base de dades MySQL (com XAMPP, WAMP, etc.).
+    *   Importa el fitxer `crm_mvc.sql` per a crear la base de dades (`crm_mvc_db`) i les taules. Aquest script també crea un usuari administrador per defecte (`admin@crm.com` / `admin`).
+    *   Ajusta, si cal, les credencials de la base de dades al fitxer `config.php`.
 
 2.  **Servidor Web:**
-    *   Copia tots els fitxers del projecte a la carpeta arrel del teu servidor web (per exemple, `htdocs` a XAMPP).
-    *   Assegura't que el mòdul `mod_rewrite` d'Apache estigui activat perquè l'enrutament funcioni correctament.
+    *   Copia tots els fitxers del projecte a la carpeta arrel del teu servidor web (p. ex., `htdocs`).
 
-3.  **Accés a l'Aplicació:**
-    *   Obre el teu navegador i accedeix a la URL del teu servidor local (ex: `http://localhost/`). L'aplicació s'hauria de carregar.
+3.  **Accés:**
+    *   Obre el navegador i ves a `http://localhost/` o `http://localhost/index.php`. Seràs redirigit a la pàgina de login.
 
-## Estructura de Fitxers (MVC)
-
-*   `app/`: Conté el nucli de l'aplicació.
-    *   `controllers/`: Gestionen la lògica de les peticions.
-    *   `models/`: S'encarreguen de la interacció amb la base de dades.
-    *   `views/`: Contenen el codi HTML i la presentació.
-*   `config/`: Fitxers de configuració, com la connexió a la base de dades.
-*   `public/`: El punt d'entrada de l'aplicació (`index.php`) i els fitxers públics (CSS, JS, imatges).
-*   `.htaccess`: Redirigeix totes les peticions a `public/index.php`.
-*   `database_catala.sql`: Script per a la creació de la base de dades en català.
-
-Aquest prototip és una base sòlida sobre la qual els alumnes poden continuar construint i aprenent. Espero que sigui de gran ajuda!
+Espero que aquest projecte sigui una excel·lent eina d'aprenentatge!

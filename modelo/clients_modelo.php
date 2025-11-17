@@ -1,0 +1,38 @@
+<?php
+// Modelo/clients_modelo.php
+
+class ClientsModelo {
+    private $connexio;
+
+    public function __construct() {
+        $this->connexio = conectar();
+    }
+
+    public function comptarTots() {
+        $resultat = $this->connexio->query("SELECT COUNT(*) as total FROM clients");
+        $total = $resultat->fetch_assoc()['total'];
+        // No tanquem la connexió aquí per si es criden altres mètodes
+        return $total;
+    }
+
+    public function obtenirTots() {
+        $resultat = $this->connexio->query("SELECT c.*, u.nom_complet as nom_responsable FROM clients c LEFT JOIN usuaris u ON c.usuari_responsable = u.id_usuari");
+        $dades = $resultat->fetch_all(MYSQLI_ASSOC);
+        $this->connexio->close();
+        return $dades;
+    }
+
+    public function cercar($terme) {
+        $sql = "SELECT c.*, u.nom_complet as nom_responsable FROM clients c LEFT JOIN usuaris u ON c.usuari_responsable = u.id_usuari WHERE c.nom_complet LIKE ? OR c.empresa LIKE ?";
+        $stmt = $this->connexio->prepare($sql);
+        $terme_like = "%" . $terme . "%";
+        $stmt->bind_param("ss", $terme_like, $terme_like);
+        $stmt->execute();
+        $resultat = $stmt->get_result();
+        $dades = $resultat->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        $this->connexio->close();
+        return $dades;
+    }
+}
+?>
