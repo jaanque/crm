@@ -3,22 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sessió</title>
-    <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0; }
-        .login-container { background: white; padding: 2em; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 1em; }
-        label { display: block; margin-bottom: 0.5em; }
-        input { width: 100%; padding: 0.5em; }
-        button { width: 100%; padding: 0.7em; background-color: #007bff; color: white; border: none; cursor: pointer; }
-        .error { color: red; margin-top: 1em; }
-    </style>
+    <link rel="stylesheet" href="vista/css/estil.css">
 </head>
 <body>
-    <div class="login-container">
+    <div class="auth-container">
         <h2>Iniciar Sessió al CRM</h2>
+
         <?php if (isset($_GET['registre']) && $_GET['registre'] == 'exit'): ?>
-            <p style="color: green;">T'has registrat correctament! Si us plau, inicia sessió.</p>
+            <p style="color: green; text-align: center;">T'has registrat correctament! Si us plau, inicia sessió.</p>
         <?php endif; ?>
+
         <form action="index.php?c=usuaris&m=login" method="post">
             <div class="form-group">
                 <label for="email">Correu Electrònic:</label>
@@ -30,10 +24,11 @@
             </div>
             <button type="submit">Entrar</button>
             <?php if (isset($data['error'])): ?>
-                <p class="error"><?php echo $data['error']; ?></p>
+                <p style="color: red; margin-top: 1em; text-align: center;"><?php echo $data['error']; ?></p>
             <?php endif; ?>
         </form>
-        <div style="text-align: center; margin-top: 1em;">
+
+        <div class="auth-link">
             <p>No tens un compte? <a href="index.php?c=usuaris&m=registre">Registra't aquí</a>.</p>
         </div>
     </div>
