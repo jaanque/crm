@@ -1,4 +1,6 @@
--- Base de dades per al CRM (Versió en Català)
+-- Base de dades per al CRM (Versió MVC)
+CREATE DATABASE IF NOT EXISTS crm_mvc_db;
+USE crm_mvc_db;
 
 -- Taula d'usuaris
 CREATE TABLE usuaris (
@@ -6,8 +8,7 @@ CREATE TABLE usuaris (
     nom_complet VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     contrasenya VARCHAR(255) NOT NULL,
-    rol ENUM('administrador', 'venedor') NOT NULL,
-    data_registre TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    rol ENUM('administrador', 'venedor') NOT NULL
 );
 
 -- Taula de clients
@@ -17,7 +18,6 @@ CREATE TABLE clients (
     email VARCHAR(100),
     telefon VARCHAR(20),
     empresa VARCHAR(100),
-    data_registre TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     usuari_responsable INT,
     FOREIGN KEY (usuari_responsable) REFERENCES usuaris(id_usuari)
 );
@@ -30,7 +30,6 @@ CREATE TABLE oportunitats (
     descripcio TEXT,
     valor_estimat DECIMAL(10, 2),
     estat ENUM('progres', 'guanyada', 'perduda') NOT NULL,
-    data_creacio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     usuari_responsable INT,
     FOREIGN KEY (id_client) REFERENCES clients(id_client),
     FOREIGN KEY (usuari_responsable) REFERENCES usuaris(id_usuari)
@@ -45,3 +44,6 @@ CREATE TABLE tasques (
     estat ENUM('pendent', 'completada') NOT NULL,
     FOREIGN KEY (id_oportunitat) REFERENCES oportunitats(id_oportunitat)
 );
+
+-- Inserir un usuari administrador per defecte
+INSERT INTO usuaris (nom_complet, email, contrasenya, rol) VALUES ('Admin', 'admin@crm.com', 'admin', 'administrador');
