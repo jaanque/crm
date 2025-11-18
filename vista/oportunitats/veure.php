@@ -13,4 +13,3 @@
 <br>
 <a href="index.php?c=oportunitats&m=index">Tornar a la llista</a>
 
-<?php require 'vista/includes/footer.php'; ?>

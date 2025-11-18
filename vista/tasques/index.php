@@ -35,4 +35,3 @@
     </tbody>
 </table>
 
-<?php require 'vista/includes/footer.php'; ?>

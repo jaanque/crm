@@ -29,4 +29,3 @@ if ($_SESSION['rol'] == 'administrador') {
 }
 ?>
 
-<?php require 'vista/includes/footer.php'; ?>
