@@ -35,7 +35,8 @@
                     <td><?php echo htmlspecialchars($client['nom_responsable']); ?></td>
                     <td>
                         <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'administrador'): ?>
-                            <a href="index.php?c=clients&m=editar&id=<?php echo $client['id_client']; ?>">Editar</a>
+                            <a href="index.php?c=clients&m=editar&id=<?php echo $client['id_client']; ?>">Editar</a> |
+                            <a href="index.php?c=clients&m=eliminar&id=<?php echo $client['id_client']; ?>" onclick="return confirm('Estàs segur que vols eliminar aquest client?');">Eliminar</a>
                         <?php endif; ?>
                     </td>
                 </tr>

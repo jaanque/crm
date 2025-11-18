@@ -63,5 +63,15 @@ class ClientsModelo {
         $this->connexio->close();
         return $exit;
     }
+
+    public function deleteClientById($id) {
+        $sql = "DELETE FROM clients WHERE id_client = ?";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $exit = $stmt->execute();
+        $stmt->close();
+        $this->connexio->close();
+        return $exit;
+    }
 }
 ?>

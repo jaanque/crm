@@ -55,5 +55,18 @@ class ClientsControlador {
             exit;
         }
     }
+
+    public function eliminar() {
+        if ($_SESSION['rol'] != 'administrador') {
+            die("Accés denegat.");
+        }
+
+        $id = $_GET['id'];
+        $modelo = new ClientsModelo();
+        $modelo->deleteClientById($id);
+
+        header('Location: index.php?c=clients&m=index');
+        exit;
+    }
 }
 ?>
