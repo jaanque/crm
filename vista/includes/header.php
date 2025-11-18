@@ -5,7 +5,7 @@
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <title>CRM - MVC</title>
+    <title>CRM</title>
     <link rel="stylesheet" href="vista/css/estil.css">
 </head>
 <body>
