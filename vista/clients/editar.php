@@ -22,4 +22,3 @@
     <button type="submit" style="width: 100%;">Actualitzar</button>
 </form>
 
-<?php require 'vista/includes/footer.php'; ?>

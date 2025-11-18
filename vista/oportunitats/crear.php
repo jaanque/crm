@@ -34,4 +34,3 @@
     <button type="submit" style="width: 100%;">Guardar</button>
 </form>
 
-<?php require 'vista/includes/footer.php'; ?>

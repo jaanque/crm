@@ -33,4 +33,3 @@
 <br>
 <a href="index.php?c=tasques&m=index">Tornar a les meves tasques pendents</a>
 
-<?php require 'vista/includes/footer.php'; ?>
