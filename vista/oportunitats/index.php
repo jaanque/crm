@@ -28,6 +28,8 @@
     <button type="submit">Filtrar</button>
 </form>
 <br>
+<a href="index.php?c=oportunitats&m=crear">Crear Nova Oportunitat</a>
+<br><br>
 
 <table>
     <thead>
@@ -38,6 +40,7 @@
             <th>Valor Estimat (€)</th>
             <th>Estat</th>
             <th>Responsable</th>
+            <th>Accions</th>
         </tr>
     </thead>
     <tbody>
@@ -50,11 +53,16 @@
                     <td><?php echo $oportunitat['valor_estimat']; ?></td>
                     <td><?php echo htmlspecialchars($oportunitat['estat']); ?></td>
                     <td><?php echo htmlspecialchars($oportunitat['nom_responsable']); ?></td>
+                    <td>
+                        <a href="index.php?c=oportunitats&m=veure&id=<?php echo $oportunitat['id_oportunitat']; ?>">Veure</a> |
+                        <a href="index.php?c=oportunitats&m=editar&id=<?php echo $oportunitat['id_oportunitat']; ?>">Editar</a> |
+                        <a href="index.php?c=oportunitats&m=eliminar&id=<?php echo $oportunitat['id_oportunitat']; ?>" onclick="return confirm('Estàs segur que vols eliminar aquesta oportunitat?');">Eliminar</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="6">No s'han trobat oportunitats.</td>
+                <td colspan="7">No s'han trobat oportunitats.</td>
             </tr>
         <?php endif; ?>
     </tbody>

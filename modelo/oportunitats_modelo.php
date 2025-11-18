@@ -34,5 +34,51 @@ class OportunitatsModelo {
         // No tanquem la connexió aquí per si es fan servir altres mètodes
         return $dades;
     }
+
+    public function insertOpportunity($id_client, $titol, $descripcio, $valor_estimat, $estat, $usuari_responsable) {
+        $sql = "INSERT INTO oportunitats (id_client, titol, descripcio, valor_estimat, estat, usuari_responsable) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("issdsi", $id_client, $titol, $descripcio, $valor_estimat, $estat, $usuari_responsable);
+        $exit = $stmt->execute();
+        $stmt->close();
+        $this->connexio->close();
+        return $exit;
+    }
+
+    public function getOpportunityById($id) {
+        $sql = "SELECT o.*, c.nom_complet as nom_client, u.nom_complet as nom_responsable
+                FROM oportunitats o
+                LEFT JOIN clients c ON o.id_client = c.id_client
+                LEFT JOIN usuaris u ON o.usuari_responsable = u.id_usuari
+                WHERE o.id_oportunitat = ?";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $resultat = $stmt->get_result();
+        $oportunitat = $resultat->fetch_assoc();
+        $stmt->close();
+        // No tanquem la connexió per si es necessita després
+        return $oportunitat;
+    }
+
+    public function updateOpportunity($id, $id_client, $titol, $descripcio, $valor_estimat, $estat) {
+        $sql = "UPDATE oportunitats SET id_client = ?, titol = ?, descripcio = ?, valor_estimat = ?, estat = ? WHERE id_oportunitat = ?";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("issdsi", $id_client, $titol, $descripcio, $valor_estimat, $estat, $id);
+        $exit = $stmt->execute();
+        $stmt->close();
+        $this->connexio->close();
+        return $exit;
+    }
+
+    public function deleteOpportunityById($id) {
+        $sql = "DELETE FROM oportunitats WHERE id_oportunitat = ?";
+        $stmt = $this.connexio->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $exit = $stmt->execute();
+        $stmt->close();
+        $this->connexio->close();
+        return $exit;
+    }
 }
 ?>
