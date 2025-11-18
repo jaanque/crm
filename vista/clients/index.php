@@ -10,6 +10,8 @@
     <button type="submit">Cercar</button>
 </form>
 <br>
+<a href="index.php?c=clients&m=crear">Crear Nou Client</a>
+<br><br>
 
 <table>
     <thead>

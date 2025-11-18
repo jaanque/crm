@@ -36,7 +36,7 @@ class OportunitatsModelo {
     }
 
     public function insertOpportunity($id_client, $titol, $descripcio, $valor_estimat, $estat, $usuari_responsable) {
-        $sql = "INSERT INTO oportunitats (id_client, titol, descripcio, valor_estimat, estat, usuari_responsable) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO oportunitats (id_client, titol, descripcio, valor_estimat, estat, usuari_responsable, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?, NOW())";
         $stmt = $this->connexio->prepare($sql);
         $stmt->bind_param("issdsi", $id_client, $titol, $descripcio, $valor_estimat, $estat, $usuari_responsable);
         $exit = $stmt->execute();

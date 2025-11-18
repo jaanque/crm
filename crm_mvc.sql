@@ -19,6 +19,7 @@ CREATE TABLE clients (
     telefon VARCHAR(20),
     empresa VARCHAR(100),
     usuari_responsable INT,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (usuari_responsable) REFERENCES usuaris(id_usuari)
 );
 
@@ -30,6 +31,7 @@ CREATE TABLE oportunitats (
     descripcio TEXT,
     valor_estimat DECIMAL(10, 2),
     estat ENUM('progres', 'guanyada', 'perduda') NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     usuari_responsable INT,
     FOREIGN KEY (id_client) REFERENCES clients(id_client),
     FOREIGN KEY (usuari_responsable) REFERENCES usuaris(id_usuari)

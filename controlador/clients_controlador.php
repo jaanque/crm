@@ -23,6 +23,23 @@ class ClientsControlador {
         require_once 'vista/clients/index.php';
     }
 
+    public function crear() {
+        require_once 'vista/clients/crear.php';
+    }
+
+    public function guardar() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $nom_complet = $_POST['nom_complet'];
+            $email = $_POST['email'];
+            $telefon = $_POST['telefon'];
+            $empresa = $_POST['empresa'];
+            $usuari_responsable = $_SESSION['id_usuari'];
+            $this->modelo->insertClient($nom_complet, $email, $telefon, $empresa, $usuari_responsable);
+            header('Location: index.php?c=clients&m=index');
+            exit;
+        }
+    }
+
     private function verificarPermisos($id_client) {
         $client = $this->modelo->getClientById($id_client);
         if (!$client) {

@@ -73,5 +73,15 @@ class ClientsModelo {
         $this->connexio->close();
         return $exit;
     }
+
+    public function insertClient($nom_complet, $email, $telefon, $empresa, $usuari_responsable) {
+        $sql = "INSERT INTO clients (nom_complet, email, telefon, empresa, usuari_responsable, fecha_registro) VALUES (?, ?, ?, ?, ?, NOW())";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("ssssi", $nom_complet, $email, $telefon, $empresa, $usuari_responsable);
+        $exit = $stmt->execute();
+        $stmt->close();
+        $this->connexio->close();
+        return $exit;
+    }
 }
 ?>
