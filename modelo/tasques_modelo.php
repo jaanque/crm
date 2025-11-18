@@ -42,5 +42,26 @@ class TasquesModelo {
 
         return $exit;
     }
+
+    public function insertTask($id_oportunitat, $descripcio, $data_tasca, $estat) {
+        $sql = "INSERT INTO tasques (id_oportunitat, descripcio, data, estat) VALUES (?, ?, ?, ?)";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("isss", $id_oportunitat, $descripcio, $data_tasca, $estat);
+        $exit = $stmt->execute();
+        $stmt->close();
+        $this->connexio->close();
+        return $exit;
+    }
+
+    public function getAllTasks() {
+        $sql = "SELECT t.*, o.titol as titol_oportunitat
+                FROM tasques t
+                LEFT JOIN oportunitats o ON t.id_oportunitat = o.id_oportunitat
+                ORDER BY t.data ASC";
+        $resultat = $this->connexio->query($sql);
+        $dades = $resultat->fetch_all(MYSQLI_ASSOC);
+        $this->connexio->close();
+        return $dades;
+    }
 }
 ?>

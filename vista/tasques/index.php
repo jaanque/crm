@@ -2,6 +2,10 @@
 
 <h2>Les Meves Tasques Pendents</h2>
 
+<a href="index.php?c=tasques&m=crear">Crear Nova Tasca</a> |
+<a href="index.php?c=tasques&m=llistat">Veure Totes les Tasques</a>
+<br><br>
+
 <table>
     <thead>
         <tr>

@@ -33,5 +33,36 @@ class TasquesControlador {
         header('Location: index.php?c=tasques&m=index');
         exit;
     }
+
+    public function crear() {
+        // Necessitem la llista d'oportunitats per al formulari
+        require_once 'modelo/oportunitats_modelo.php';
+        $oportunitats_modelo = new OportunitatsModelo();
+        $data['oportunitats'] = $oportunitats_modelo->obtenirTotes();
+
+        require_once 'vista/tasques/crear.php';
+    }
+
+    public function guardar() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id_oportunitat = $_POST['id_oportunitat'];
+            $descripcio = $_POST['descripcio'];
+            $data_tasca = $_POST['data_tasca'];
+            $estat = 'pendent'; // Les noves tasques sempre comencen com a pendents
+
+            $modelo = new TasquesModelo();
+            $modelo->insertTask($id_oportunitat, $descripcio, $data_tasca, $estat);
+
+            header('Location: index.php?c=tasques&m=index');
+            exit;
+        }
+    }
+
+    public function llistat() {
+        $modelo = new TasquesModelo();
+        $data['tasques'] = $modelo->getAllTasks();
+
+        require_once 'vista/tasques/llistat.php';
+    }
 }
 ?>
