@@ -38,7 +38,7 @@ class TasquesControlador {
         // Necessitem la llista d'oportunitats per al formulari
         require_once 'modelo/oportunitats_modelo.php';
         $oportunitats_modelo = new OportunitatsModelo();
-        $data['oportunitats'] = $oportunitats_modelo->obtenirTotes();
+        $data['oportunitats'] = $oportunitats_modelo->obtenirOportunitatsPerUsuari($_SESSION['id_usuari']);
 
         require_once 'vista/tasques/crear.php';
     }

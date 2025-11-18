@@ -80,5 +80,20 @@ class OportunitatsModelo {
         $this->connexio->close();
         return $exit;
     }
+
+    public function obtenirOportunitatsPerUsuari($id_usuari) {
+        $sql = "SELECT o.*, c.nom_complet as nom_client, u.nom_complet as nom_responsable
+                FROM oportunitats o
+                LEFT JOIN clients c ON o.id_client = c.id_client
+                LEFT JOIN usuaris u ON o.usuari_responsable = u.id_usuari
+                WHERE o.usuari_responsable = ?";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("i", $id_usuari);
+        $stmt->execute();
+        $resultat = $stmt->get_result();
+        $dades = $resultat->fetch_all(MYSQLI_ASSOC);
+        // No tanquem la connexio per si es fan servir altres metodes
+        return $dades;
+    }
 }
 ?>
