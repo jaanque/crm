@@ -1,5 +1,5 @@
 -- Base de dades per al CRM (Versió MVC)
-CREATE DATABASE IF NOT EXISTS crm_mvc_db;
+CREATE DATABASE IF NOT EXISTS crm_db;
 USE crm_mvc_db;
 
 -- Taula d'usuaris
