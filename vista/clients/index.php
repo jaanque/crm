@@ -20,6 +20,7 @@
             <th>Telèfon</th>
             <th>Empresa</th>
             <th>Responsable</th>
+            <th>Accions</th>
         </tr>
     </thead>
     <tbody>
@@ -32,11 +33,16 @@
                     <td><?php echo htmlspecialchars($client['telefon']); ?></td>
                     <td><?php echo htmlspecialchars($client['empresa']); ?></td>
                     <td><?php echo htmlspecialchars($client['nom_responsable']); ?></td>
+                    <td>
+                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'administrador'): ?>
+                            <a href="index.php?c=clients&m=editar&id=<?php echo $client['id_client']; ?>">Editar</a>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="6">No s'han trobat clients.</td>
+                <td colspan="7">No s'han trobat clients.</td>
             </tr>
         <?php endif; ?>
     </tbody>

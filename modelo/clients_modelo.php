@@ -41,5 +41,27 @@ class ClientsModelo {
         // No tanquem la connexió per si s'utilitza després
         return $dades;
     }
+
+    public function getClientById($id) {
+        $sql = "SELECT * FROM clients WHERE id_client = ?";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $resultat = $stmt->get_result();
+        $client = $resultat->fetch_assoc();
+        $stmt->close();
+        // No tanquem la connexió per si es necessita després
+        return $client;
+    }
+
+    public function updateClient($id, $nom_complet, $email, $telefon, $empresa) {
+        $sql = "UPDATE clients SET nom_complet = ?, email = ?, telefon = ?, empresa = ? WHERE id_client = ?";
+        $stmt = $this->connexio->prepare($sql);
+        $stmt->bind_param("ssssi", $nom_complet, $email, $telefon, $empresa, $id);
+        $exit = $stmt->execute();
+        $stmt->close();
+        $this->connexio->close();
+        return $exit;
+    }
 }
 ?>

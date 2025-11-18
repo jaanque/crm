@@ -23,5 +23,37 @@ class ClientsControlador {
 
         require_once 'vista/clients/index.php';
     }
+
+    public function editar() {
+        if ($_SESSION['rol'] != 'administrador') {
+            die("Accés denegat.");
+        }
+
+        $id = $_GET['id'];
+        $modelo = new ClientsModelo();
+        $data['client'] = $modelo->getClientById($id);
+
+        require_once 'vista/clients/editar.php';
+    }
+
+    public function actualitzar() {
+        if ($_SESSION['rol'] != 'administrador') {
+            die("Accés denegat.");
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_GET['id'];
+            $nom_complet = $_POST['nom_complet'];
+            $email = $_POST['email'];
+            $telefon = $_POST['telefon'];
+            $empresa = $_POST['empresa'];
+
+            $modelo = new ClientsModelo();
+            $modelo->updateClient($id, $nom_complet, $email, $telefon, $empresa);
+
+            header('Location: index.php?c=clients&m=index');
+            exit;
+        }
+    }
 }
 ?>
