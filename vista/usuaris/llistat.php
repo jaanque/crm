@@ -33,7 +33,7 @@
             <tr>
                 <td colspan="5">No s'han trobat usuaris.</td>
             </tr>
-        <?php endif; ?>
+        <?php } ?>
     </tbody>
 </table>
 
