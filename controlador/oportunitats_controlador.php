@@ -15,8 +15,17 @@ class OportunitatsControlador {
     public function index() {
         $modelo = new OportunitatsModelo();
 
-        $estat = isset($_GET['estat']) ? $_GET['estat'] : null;
-        $id_client = isset($_GET['id_client']) ? $_GET['id_client'] : null;
+        if (isset($_GET['estat'])) {
+            $estat = $_GET['estat'];
+        } else {
+            $estat = null;
+        }
+
+        if (isset($_GET['id_client'])) {
+            $id_client = $_GET['id_client'];
+        } else {
+            $id_client = null;
+        }
 
         $data['oportunitats'] = $modelo->obtenirTotes($estat, $id_client);
 

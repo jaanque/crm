@@ -6,11 +6,12 @@
     <p>
         <label for="id_client">Client:</label><br>
         <select name="id_client" id="id_client" required style="width: 100%;">
-            <?php foreach ($data['clients'] as $client): ?>
-                <option value="<?php echo $client['id_client']; ?>" <?php echo ($client['id_client'] == $data['oportunitat']['id_client']) ? 'selected' : ''; ?>>
-                    <?php echo htmlspecialchars($client['nom_complet']); ?>
-                </option>
-            <?php endforeach; ?>
+            <?php
+            foreach ($data['clients'] as $client) {
+                $selected = ($client['id_client'] == $data['oportunitat']['id_client']) ? 'selected' : '';
+                echo '<option value="' . $client['id_client'] . '" ' . $selected . '>' . htmlspecialchars($client['nom_complet']) . '</option>';
+            }
+            ?>
         </select>
     </p>
     <p>
@@ -27,10 +28,10 @@
     </p>
     <p>
         <label for="estat">Estat:</label><br>
-        <select name="estat" id="estat" required style="width: 100%;" <?php echo ($_SESSION['rol'] != 'administrador') ? 'disabled' : ''; ?>>
-            <option value="progres" <?php echo ($data['oportunitat']['estat'] == 'progres') ? 'selected' : ''; ?>>Progrés</option>
-            <option value="guanyada" <?php echo ($data['oportunitat']['estat'] == 'guanyada') ? 'selected' : ''; ?>>Guanyada</option>
-            <option value="perduda" <?php echo ($data['oportunitat']['estat'] == 'perduda') ? 'selected' : ''; ?>>Perduda</option>
+        <select name="estat" id="estat" required style="width: 100%;" <?php if ($_SESSION['rol'] != 'administrador') { echo 'disabled'; } ?>>
+            <option value="progres" <?php if ($data['oportunitat']['estat'] == 'progres') { echo 'selected'; } ?>>Progrés</option>
+            <option value="guanyada" <?php if ($data['oportunitat']['estat'] == 'guanyada') { echo 'selected'; } ?>>Guanyada</option>
+            <option value="perduda" <?php if ($data['oportunitat']['estat'] == 'perduda') { echo 'selected'; } ?>>Perduda</option>
         </select>
     </p>
     <button type="submit" style="width: 100%;">Actualitzar</button>
