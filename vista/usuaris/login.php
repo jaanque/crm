@@ -28,7 +28,6 @@
         <?php endif; ?>
     </form>
 
-    <p>No tens un compte? <a href="index.php?c=usuaris&m=registre">Registra't aquí</a>.</p>
 
 </body>
 </html>

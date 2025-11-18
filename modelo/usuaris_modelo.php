@@ -23,32 +23,6 @@ class UsuarisModelo {
         return $resultat->fetch_assoc();
     }
 
-    public function emailExisteix($email) {
-        $sql = "SELECT id_usuari FROM usuaris WHERE email = ?";
-        $stmt = $this->connexio->prepare($sql);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $resultat = $stmt->get_result();
-
-        return $resultat->num_rows > 0;
-    }
-
-    public function crearUsuari($nom_complet, $email, $contrasenya) {
-        // Per defecte, els nous usuaris són 'venedors'
-        $rol = 'venedor';
-
-        $sql = "INSERT INTO usuaris (nom_complet, email, contrasenya, rol) VALUES (?, ?, ?, ?)";
-        $stmt = $this->connexio->prepare($sql);
-        $stmt->bind_param("ssss", $nom_complet, $email, $contrasenya, $rol);
-
-        $exit = $stmt->execute();
-
-        $stmt->close();
-        $this->connexio->close();
-
-        return $exit;
-    }
-
     public function obtenirTots() {
         $resultat = $this->connexio->query("SELECT id_usuari, nom_complet, email, rol FROM usuaris ORDER BY nom_complet ASC");
         $dades = $resultat->fetch_all(MYSQLI_ASSOC);
