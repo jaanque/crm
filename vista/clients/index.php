@@ -34,7 +34,10 @@
                     <td><?php echo htmlspecialchars($client['empresa']); ?></td>
                     <td><?php echo htmlspecialchars($client['nom_responsable']); ?></td>
                     <td>
-                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'administrador'): ?>
+                        <?php
+                        $canAccess = ($_SESSION['rol'] == 'administrador' || ($_SESSION['rol'] == 'venedor' && $client['usuari_responsable'] == $_SESSION['id_usuari']));
+                        if ($canAccess):
+                        ?>
                             <a href="index.php?c=clients&m=editar&id=<?php echo $client['id_client']; ?>">Editar</a> |
                             <a href="index.php?c=clients&m=eliminar&id=<?php echo $client['id_client']; ?>" onclick="return confirm('Estàs segur que vols eliminar aquest client?');">Eliminar</a>
                         <?php endif; ?>

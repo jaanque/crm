@@ -25,31 +25,47 @@ class ClientsControlador {
     }
 
     public function editar() {
-        if ($_SESSION['rol'] != 'administrador') {
+        $id = $_GET['id'];
+        $modelo = new ClientsModelo();
+        $client = $modelo->getClientById($id);
+
+        if (!$client) {
+            die("Client no trobat.");
+        }
+
+        $canAccess = ($_SESSION['rol'] == 'administrador' || ($_SESSION['rol'] == 'venedor' && $client['usuari_responsable'] == $_SESSION['id_usuari']));
+
+        if (!$canAccess) {
             die("Accés denegat.");
         }
 
-        $id = $_GET['id'];
-        $modelo = new ClientsModelo();
-        $data['client'] = $modelo->getClientById($id);
-
+        $data['client'] = $client;
         require_once 'vista/clients/editar.php';
     }
 
     public function actualitzar() {
-        if ($_SESSION['rol'] != 'administrador') {
+        $id = $_GET['id'];
+        $modelo = new ClientsModelo();
+        $client = $modelo->getClientById($id);
+
+        if (!$client) {
+            die("Client no trobat.");
+        }
+
+        $canAccess = ($_SESSION['rol'] == 'administrador' || ($_SESSION['rol'] == 'venedor' && $client['usuari_responsable'] == $_SESSION['id_usuari']));
+
+        if (!$canAccess) {
             die("Accés denegat.");
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $id = $_GET['id'];
             $nom_complet = $_POST['nom_complet'];
             $email = $_POST['email'];
             $telefon = $_POST['telefon'];
             $empresa = $_POST['empresa'];
 
-            $modelo = new ClientsModelo();
-            $modelo->updateClient($id, $nom_complet, $email, $telefon, $empresa);
+            $updateModelo = new ClientsModelo();
+            $updateModelo->updateClient($id, $nom_complet, $email, $telefon, $empresa);
 
             header('Location: index.php?c=clients&m=index');
             exit;
@@ -57,13 +73,22 @@ class ClientsControlador {
     }
 
     public function eliminar() {
-        if ($_SESSION['rol'] != 'administrador') {
+        $id = $_GET['id'];
+        $modelo = new ClientsModelo();
+        $client = $modelo->getClientById($id);
+
+        if (!$client) {
+            die("Client no trobat.");
+        }
+
+        $canAccess = ($_SESSION['rol'] == 'administrador' || ($_SESSION['rol'] == 'venedor' && $client['usuari_responsable'] == $_SESSION['id_usuari']));
+
+        if (!$canAccess) {
             die("Accés denegat.");
         }
 
-        $id = $_GET['id'];
-        $modelo = new ClientsModelo();
-        $modelo->deleteClientById($id);
+        $deleteModelo = new ClientsModelo();
+        $deleteModelo->deleteClientById($id);
 
         header('Location: index.php?c=clients&m=index');
         exit;
